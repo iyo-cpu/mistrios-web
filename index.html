@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080810">
+  <meta name="description" content="MISTRIOS: plataforma para artistas emergentes. Presenta tu proyecto y prepara tu próximo lanzamiento musical.">
+  <title>MISTRIOS — Artistas emergentes</title>
+  <style>
+    :root {
+      --bg: #080810;
+      --panel: rgba(19, 20, 38, .88);
+      --pink: #ff3ca6;
+      --blue: #4de8ff;
+      --text: #f5f4ff;
+      --muted: #aaa9c0;
+      --line: rgba(255,255,255,.12);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(ellipse at 12% 8%, rgba(255,60,166,.16), transparent 34rem),
+        radial-gradient(ellipse at 88% 25%, rgba(77,232,255,.12), transparent 30rem),
+        var(--bg);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+    a { color: inherit; }
+    .wrap { width: min(1120px, calc(100% - 36px)); margin: 0 auto; }
+    header {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 18px; padding: 22px 0;
+    }
+    .brand {
+      font-weight: 950; letter-spacing: .2em; font-size: 1.25rem;
+      text-decoration: none;
+    }
+    .brand span { color: var(--pink); text-shadow: 0 0 22px rgba(255,60,166,.55); }
+    .navlink {
+      color: var(--text); text-decoration: none; font-size: .92rem;
+      border: 1px solid var(--line); border-radius: 999px; padding: 10px 16px;
+      transition: .2s ease;
+    }
+    .navlink:hover { border-color: var(--blue); box-shadow: 0 0 18px rgba(77,232,255,.13); }
+    .hero { padding: 76px 0 68px; text-align: center; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 9px; color: var(--blue);
+      border: 1px solid rgba(77,232,255,.32); background: rgba(77,232,255,.06);
+      border-radius: 999px; padding: 7px 13px; font-size: .78rem;
+      text-transform: uppercase; letter-spacing: .16em; font-weight: 750;
+    }
+    .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--pink); box-shadow: 0 0 12px var(--pink); }
+    h1 {
+      margin: 23px auto 18px; max-width: 900px; line-height: .98;
+      font-size: clamp(3rem, 8vw, 6.4rem); letter-spacing: -.065em;
+    }
+    h1 .gradient {
+      background: linear-gradient(100deg, var(--pink), #c58aff 48%, var(--blue));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .hero p { color: var(--muted); max-width: 650px; margin: 0 auto; font-size: clamp(1rem, 2vw, 1.15rem); }
+    .actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 30px; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 13px 20px; border-radius: 12px; font-weight: 800;
+      text-decoration: none; transition: transform .2s, box-shadow .2s;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { color: #080810; background: linear-gradient(100deg, var(--pink), #ff8bd0); box-shadow: 0 8px 30px rgba(255,60,166,.2); }
+    .btn-secondary { border: 1px solid var(--line); background: rgba(255,255,255,.035); }
+    .ticker {
+      overflow: hidden; border-block: 1px solid var(--line);
+      color: var(--muted); padding: 13px 0; font-size: .75rem;
+      letter-spacing: .19em; text-transform: uppercase; text-align: center;
+    }
+    .ticker b { color: var(--pink); padding: 0 12px; }
+    section { padding: 68px 0; }
+    .section-head { max-width: 700px; margin-bottom: 28px; }
+    .kicker { color: var(--pink); font-size: .76rem; font-weight: 850; text-transform: uppercase; letter-spacing: .18em; }
+    h2 { margin: 8px 0 12px; font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.08; letter-spacing: -.045em; }
+    .section-head p { color: var(--muted); margin: 0; }
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .card {
+      padding: 24px; border: 1px solid var(--line); border-radius: 18px;
+      background: linear-gradient(145deg, rgba(255,255,255,.055), rgba(255,255,255,.018));
+    }
+    .card .number { color: var(--blue); font-size: .8rem; letter-spacing: .13em; font-weight: 900; }
+    .card h3 { margin: 12px 0 7px; font-size: 1.15rem; }
+    .card p { color: var(--muted); margin: 0; font-size: .94rem; }
+    .form-shell {
+      padding: clamp(18px, 3vw, 34px); border: 1px solid rgba(255,60,166,.28);
+      border-radius: 24px; background: var(--panel);
+      box-shadow: 0 0 55px rgba(255,60,166,.07), 0 0 55px rgba(77,232,255,.045);
+    }
+    .form-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; margin-bottom: 22px; }
+    .form-top h2 { margin-top: 6px; }
+    .form-top p { color: var(--muted); margin: 0; max-width: 650px; }
+    .tag { white-space: nowrap; border: 1px solid rgba(77,232,255,.3); color: var(--blue); padding: 7px 10px; border-radius: 9px; font-size: .72rem; font-weight: 800; letter-spacing: .08em; }
+    .form-frame {
+      display: block; width: 100%; height: 1912px; border: 0; border-radius: 12px;
+      background: white;
+    }
+    .form-note { color: var(--muted); font-size: .85rem; margin: 13px 2px 0; }
+    .form-note a { color: var(--blue); }
+    .notice {
+      margin-top: 20px; padding: 16px 18px; border-left: 3px solid var(--blue);
+      background: rgba(77,232,255,.055); color: #d8faff; border-radius: 0 10px 10px 0;
+      font-size: .9rem;
+    }
+    footer { border-top: 1px solid var(--line); padding: 28px 0 36px; color: var(--muted); font-size: .84rem; }
+    .footer-row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+    .social-placeholder { color: var(--blue); }
+    @media (max-width: 760px) {
+      .hero { padding: 56px 0 50px; }
+      .cards { grid-template-columns: 1fr; }
+      .form-top { display: block; }
+      .tag { display: inline-block; margin-top: 14px; }
+      .form-frame { height: 1912px; }
+      section { padding: 52px 0; }
+    }
+  </style>
+</head>
+<body>
+  <header class="wrap">
+    <a class="brand" href="#inicio" aria-label="MISTRIOS, inicio">MIS<span>TRIOS</span></a>
+    <a class="navlink" href="#solicitud">Presenta tu proyecto ↗</a>
+  </header>
+
+  <main>
+    <section class="hero wrap" id="inicio">
+      <div class="eyebrow"><span class="dot"></span> Plataforma para artistas emergentes</div>
+      <h1>Tu música.<br><span class="gradient">Tu siguiente nivel.</span></h1>
+      <p>MISTRIOS quiere dar espacio a nuevas voces y ayudar a artistas emergentes a preparar sus primeros lanzamientos. Cuéntanos qué estás creando.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#solicitud">Quiero presentar mi música <span aria-hidden="true">↗</span></a>
+        <a class="btn btn-secondary" href="#como-funciona">Cómo funciona</a>
+      </div>
+    </section>
+
+    <div class="ticker" aria-label="MISTRIOS">
+      NUEVOS SONIDOS <b>✳</b> NUEVAS IDEAS <b>✳</b> ARTISTAS EMERGENTES <b>✳</b> MISTRIOS
+    </div>
+
+    <section class="wrap" id="como-funciona">
+      <div class="section-head">
+        <div class="kicker">De la idea al lanzamiento</div>
+        <h2>Un espacio para empezar.</h2>
+        <p>Rellena el formulario y cuéntanos tu idea. Revisaremos la información y, si encaja con el proyecto, hablaremos contigo de los siguientes pasos.</p>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <div class="number">01 / PRESENTA</div>
+          <h3>Cuéntanos quién eres</h3>
+          <p>Tu nombre artístico, tu estilo, tus redes y el proyecto que quieres publicar.</p>
+        </article>
+        <article class="card">
+          <div class="number">02 / REVISAMOS</div>
+          <h3>Valoramos tu propuesta</h3>
+          <p>Revisaremos los detalles y comprobaremos que tienes los permisos necesarios para publicar la música.</p>
+        </article>
+        <article class="card">
+          <div class="number">03 / PLANIFICAMOS</div>
+          <h3>Hablamos del lanzamiento</h3>
+          <p>Antes de publicar, acordaremos por escrito las condiciones, los plazos y la promoción.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="wrap" id="solicitud">
+      <div class="form-shell">
+        <div class="form-top">
+          <div>
+            <div class="kicker">Solicitud de artista</div>
+            <h2>Presenta tu proyecto.</h2>
+            <p>Rellena los campos del formulario con información real. Enviar la solicitud no garantiza la aceptación ni la publicación de un lanzamiento.</p>
+          </div>
+          <div class="tag">MISTRIOS / ARTISTAS</div>
+        </div>
+
+        <iframe
+          class="form-frame"
+          src="https://docs.google.com/forms/d/e/1FAIpQLSfA6KG8GjMsgBu9LdsDwcNrX6LpSm9jB3M4RVBy1XldePPK1w/viewform?embedded=true"
+          title="Formulario de alta de artistas de MISTRIOS"
+          loading="lazy">
+          Cargando formulario…
+        </iframe>
+        <p class="form-note">¿No aparece el formulario? <a href="https://docs.google.com/forms/d/e/1FAIpQLSfA6KG8GjMsgBu9LdsDwcNrX6LpSm9jB3M4RVBy1XldePPK1w/viewform" target="_blank" rel="noopener noreferrer">Ábrelo directamente en Google Forms</a>.</p>
+        <div class="notice">Importante: enviar este formulario no sustituye un acuerdo. Las condiciones económicas, los derechos musicales, los permisos y las obligaciones de promoción deben quedar claros y aceptarse antes de publicar. Si eres menor de edad, deberá revisarlo tu madre, padre o tutor legal.</div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-row">
+      <div><strong class="brand">MIS<span>TRIOS</span></strong><br>Espacio para nuevas voces.</div>
+      <div>© <span id="year">2026</span> MISTRIOS · Todos los derechos reservados.</div>
+    </div>
+  </footer>
+</body>
+</html>
